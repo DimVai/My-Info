@@ -19,7 +19,7 @@
     --backgroundColor: lavender;
     --backgroundColorSideways: lavender; 
     --backColorLight: hsl(240, 67%, 90%); 
-    --backColorMain:hsl(273, 100%, 40%);
+    --backColorMain:#25B7D3;
     --backColorDark: hsl(273, 100%, 25%);
 }
 

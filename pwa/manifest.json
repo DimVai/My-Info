@@ -1,0 +1,26 @@
+{
+    "name": "Τα στοιχεία μου",
+    "short_name": "Τα στοιχεία μου",
+    "start_url": "/",
+    "categories": ["tools"],
+    "scope": "/",
+    "display": "standalone",    
+    "background_color": "#25B7D3",
+    "theme_color": "#25B7D3",
+    "description": "Τα στοιχεία μου",
+    "orientation": "portrait",
+    "lang": "el-GR",
+    "icons": [
+        {
+            "src": "/pwa/info.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "splash_pages": [
+        {
+            "src": "/pwa/infoSplash.png",
+            "sizes": "750x1334"
+          }
+      ]
+}
