@@ -1,0 +1,344 @@
+@charset "UTF-8";
+
+:root{
+    --sm: 576px;
+    --md: 768px;
+    --lg: 992px;
+    --pageMaxWidth: 1200px;
+
+    --defaultFontSize: 1.2rem;
+    --mainFont: Verdana, Geneva, sans-serif; 
+    /* --mainFont:  system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; */
+    --inputFont: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+    --defaultMargin: 1rem;
+    --defaultPadding: 0.5em;
+    --defaultBorderRadius: 0.3em;
+    --headerPadding: 0.8vw;
+
+    --backgroundColor: lavender;
+    --backgroundColorSideways: lavender; 
+    --backColorLight: hsl(240, 67%, 90%); 
+    --backColorMain:hsl(273, 100%, 40%);
+    --backColorDark: hsl(273, 100%, 25%);
+}
+
+html {
+    font-family: var(--mainFont);
+    background-color: var(--backgroundColorSideways);
+    font-size: var(--defaultFontSize);
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    margin: auto; /*centers body*/
+    max-width: min(var(--pageMaxWidth),100vw);
+    box-sizing: border-box;
+    color: #111;
+    line-height: 1.5;
+    background: var(--backgroundColor); 
+}
+/*<main> or all body elements if <main> does not exist.e*/
+body>*:not(header){margin: 0 2vw}  
+body * {box-sizing: border-box;}
+ 
+
+/* Text-level semantics 
+   ========================================================================== */
+
+h1,h2,h3,h4,h5,h6 {
+    font-weight: bold;
+    margin: calc(2*var(--defaultMargin)) 0 var(--defaultMargin) 0;
+    padding: 0;
+}
+/* p{margin: var(--defaultMargin) 0;} */
+.bold{font-weight:bold}
+.italics{font-style:italic}
+.underlined{text-decoration:underline}
+.s12{font-size:1.2rem}
+.s15{font-size:1.5rem}
+.s20{font-size:2rem}
+.s25{font-size:2.5rem}
+.s30{font-size:3rem}
+.s40{font-size:4rem}
+
+/* Various Weird
+========================================================================== */
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em; }
+code {
+  padding: 0.3em 0.6em;
+  background: #f5f5f5; 
+}
+kbd{
+  color: white; 
+  background-color: black;
+  padding: 0.1em 0.4em;
+  border-radius: var(--defaultBorderRadius); 
+}
+pre {
+  text-align: left;
+  padding: 0.3em 0.6em;
+  background: #f5f5f5;
+  border-radius: var(--defaultBorderRadius); 
+  overflow: auto; 
+}
+pre code {
+  padding: 0; }
+blockquote {
+  padding: 0 0 0 1em;
+  margin: 0 0 0 .1em;
+  box-shadow: inset 5px 0 DodgerBlue; }
+hr {
+  margin: var(--defaultMargin) 0;
+  height: 0; }
+sub,sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+sup {
+  top: -0.5em; }
+sub {
+  bottom: -0.25em; }
+
+
+/* Embedded content  Images and Links   - Dimitris
+  ========================================================================== */
+img, center, .center, figure {
+    display: block;
+    margin-inline: auto;		
+    text-align: center;	/*text inside figure*/
+    max-width: 100vw; /*for img*/
+}
+a{
+    text-decoration: none;
+    box-shadow: none;
+    transition: all 0.3s; 
+    font-weight: bold;
+    color: Blue;
+}
+a:hover{color: var(--backColorLight)}
+
+/* Lists
+  ========================================================================== */
+
+ol, ul, dd{
+    margin-top: 0.1em;
+    margin-left: var(--defaultMargin);
+}
+li { margin: 0 0 0.3em }
+  
+
+/* Tables
+    ========================================================================== */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0; 
+    text-align: left; 
+    border: 1px solid var(--backColorLight);
+}
+td,th {
+    padding: var(--defaultPadding) calc(2*var(--defaultPadding)) 
+}
+th {
+    text-align: left;
+    font-weight: bold;
+    color: #fff;
+    background-color: var(--backColorMain) 
+}
+tr:nth-child(odd) {background: var(--backColorLight)}
+        
+
+  
+
+ /* Header Navigation
+ It is here in order to override elements (like a,ul, img)
+    ========================================================================== */
+
+header{
+    /* margin: 0 0 var(--defaultMargin) 0; */
+    background-color:var(--backColorMain);
+    color: white;
+    padding: max(var(--headerPadding), 0.6rem);
+}
+@media (min-width:600px) { /*sticky header on desktop*/
+    header:not(.no-sticky){position:sticky;top:0;margin:0;z-index:999;} 
+}
+
+header * {    
+    margin: 0;
+    padding: 0 var(--headerPadding);
+    background-color: inherit;
+    color: inherit;
+}
+
+header, header a:first-of-type, header nav>ul {    /*header, left logo, right navs*/
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;  /*vertical align, when big logo*/
+    list-style-type: none; 
+    gap: 0.7rem 0.2em;
+}
+
+header a, header img{       /*logo image and brand name*/
+    display: inline-block; /*Σημαντικό, αλλιώς χαλάει πχ σε header>div>a>h2, ή επειδή έχω block τα img*/
+    max-height: 5rem;   /*img attribute must be smaller*/
+}
+.logo, .brand{font-size: min(calc(1rem + 0.7vw),1.5rem)}
+
+aside {
+    /* width: 40%; */
+    padding-left: .5rem;
+    margin-left: .5rem;
+    float: right;
+    border-left: 2px solid grey;
+    font-style: italic;
+    color: grey;
+}
+footer {font-size: small}
+
+
+
+/* Forms
+    ========================================================================== */
+
+fieldset {
+  border: 0.13em solid rgb(173, 202, 230);
+}
+legend {
+  font-size:larger;
+  margin: 0;
+  padding: var(--defaultPadding);
+  border: 0;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: .2rem;
+}
+
+
+/*======================================  CLASSES  ====================================*/
+/*====================================================================================*/
+
+ /* Colors and Coloring
+    ========================================================================== */
+
+/*For text*/
+.red:is(p,h1,h2,h3,h4,span,a){color:red}
+.blue:is(p,h1,h2,h3,h4,span,a){color:blue}
+.green:is(p,h1,h2,h3,h4,span,a){color:green}
+.grey:is(p,h1,h2,h3,h4,span,a){color:grey}
+.white:is(p,h1,h2,h3,h4,span,a){color:white}
+
+/*Backgrounds for buttons th nav header*/
+.red:is(button,.button,[type=button],th),[type=reset]{background:hsl(3, 100%, 41%)}
+.red:is(header,nav){background:hsl(0, 100%, 38%)}
+.blue:is(button,.button,[type=button],th,nav,header){background:hsl(217, 71%, 53%)}
+.green:is(button,.button,[type=button]){background:hsl(127, 63%, 40%)}
+.green:is(header,nav,th){background:green}
+.orange:is(button,.button,[type=button]){background:hsl(28, 100%, 55%)}
+.orange:is(header,nav,th){background:tomato}   /*hsl(14, 100%, 57%)*/
+.purple:is(button,.button,[type=button],th,nav,header){background:hsl(291, 64%, 42%)}
+.grey:is(button,.button,[type=button],th,nav,header){background:hsl(208, 7%, 46%)}
+
+.indigo:is(button,.button,[type=button],th,nav,header){background:hsl(263, 90%, 51%)}
+.teal:is(button,.button,[type=button],th,nav,header){background:hsl(162, 73%, 46%)}
+.cyan:is(button,.button,[type=button],th,nav,header){background:hsl(190, 90%, 50%)}
+.pink:is(button,.button,[type=button],th,nav,header){background:hsl(330, 67%, 52%)}
+.navy:is(button,.button,[type=button],th,nav,header){background:hsl(240, 100%, 25%)}
+.brown:is(button,.button,[type=button],th,nav,header){background:hsl(25, 76%, 31%)}
+.maroon:is(button,.button,[type=button],th,nav,header){background:hsl(0, 100%, 25%)}
+.violet:is(button,.button,[type=button],th,nav,header){background:hsl(300, 76%, 72%)}
+
+.silver{background:hsl(0, 0%, 75%)}
+.lavender{background:hsl(240, 67%, 94%)}
+.sand{background:#fdf5e6}
+.snow{background:snow}
+.pale-blue{background:#ddffff}
+.pale-red{background:#ffdddd}
+.pale-yellow{background:#ffffcc}
+.pale-green{background:#ddffdd}
+
+/*Slim containers*/
+.sm, .md, .lg{margin-inline:auto}
+.sm{max-width: var(--sm);}
+.md{max-width: var(--md);}
+.lg{max-width: var(--lg);}
+
+/***************     Layout classes     ********/
+.center-content{
+	display: grid;
+    place-items: center;
+}
+.columns{
+	column-count: 2;	 /* max columns */
+	column-width: 35ch;  /* min-width*/
+	column-gap: 2em;
+}
+.sticky { /* header,  */
+	z-index: 999;
+	position: sticky;
+	top: 0;
+}  
+.skip{ /*first link of page. Press tab when page loads */
+    position: fixed;
+    z-index: 1001;
+    right: 0;
+    left:0;
+    margin-left: auto; 
+    margin-right: auto; 
+    width: max-content; 
+    background: black;
+    color:red;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0 0 0.25rem 0.25rem;
+    outline:none;
+    transform:translateY(-120%);
+    transition: transform 350ms ease-in;
+}
+.skip:focus{transform:translateY(0);color:red;outline:none;} 
+
+
+
+
+
+/* THIS PROJECT*/
+
+[x-cloak] { display: none !important; }
+.form-label {
+    margin-bottom: .2rem;
+  }
+.bg-main{
+    background-color: var(--backColorMain) !important;
+}
+
+.bg-transition{
+    transition: width 2.5s ease-out, background-color 2.5s ease-out;
+}
+.bg-warning {
+    background-color: orange !important;
+}
+.btn-primary{
+    background-color: var(--backColorMain);
+}
+.btn-primary:hover{
+    background-color: var(--backColorDark);
+}
+
+
+
+/* TRANSITIONS BETWEEN PAGES */
+/* @view-transition {
+    navigation: auto;
+  } */
+ /* Δεν λειτουργεί καλά στο PWA... Στο site λειτουργεί καλά... */  
