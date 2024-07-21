@@ -328,12 +328,12 @@ label {
 .bg-warning {
     background-color: orange !important;
 }
-.btn-primary{
+/* .btn-primary{
     background-color: var(--backColorMain);
 }
 .btn-primary:hover{
     background-color: var(--backColorDark);
-}
+} */
 
 
 

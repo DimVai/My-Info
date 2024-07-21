@@ -53,21 +53,57 @@
                 'Διεύθυνση':'',
                 'Αυτοκίνητο':'',
                 'IBAN':'',
-            }),      
+            }), 
+            customFields:$persist({}),     
         }">
 
             <template x-for="(value, key) in fields" :key="key"><div>
-                <div x-text="key" class="form-label d-block"></div>
+                <div x-text="key" class="d-block form-label"></div>
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" :placeholder="key" x-model="fields[key]">
-                    <button x-cloak x-transition:enter.duration.1500ms x-transition:leave.duration.800ms 
-                        x-show="fields[key].length" type="button" x-data="{copied:false}" 
+                    <button x-cloak x-transition:enter.duration.1200ms x-transition:leave.duration.800ms 
+                        x-show="fields[key]?.length" type="button" x-data="{copied:false}" 
                         class="btn" :class="copied?'btn-success':'btn-outline-secondary'"
                         @click="navigator.clipboard.writeText(fields[key]);copied=true;" >
                             <i class="bi" :class="copied?'bi-clipboard-check':'bi-clipboard'"></i>
                     </button>
                 </div>
             </div></template>
+
+
+            <template x-for="(value, key) in customFields" :key="key"><div>
+                <div class="d-flex gap-2">
+                    <div x-text="key" class="d-block form-label"></div>
+                    <div class="btn-outline-danger" @click="delete customFields[key]">
+                        <i class="bi bi-x-circle"></i>
+                    </div>
+                </div>
+                <div class="input-group mb-2">
+                        <input type="text" class="form-control" :placeholder="key" x-model="customFields[key]">
+                    <button x-cloak x-transition:enter.duration.1200ms x-transition:leave.duration.800ms 
+                        x-show="customFields[key]?.length" type="button" x-data="{copied:false}" 
+                        class="btn" :class="copied?'btn-success':'btn-outline-secondary'"
+                        @click="navigator.clipboard.writeText(customFields[key]);copied=true;" >
+                            <i class="bi" :class="copied?'bi-clipboard-check':'bi-clipboard'"></i>
+                    </button>
+                </div>
+            </div></template>
+
+            <div x-data="{newKey:'',showInput:false, addField:function(key){this.customFields[key]='';this.newKey='';this.showInput=false;}}" class="d-flex mt-4">
+                <button class="btn btn-info" @click="showInput=!showInput"><i class="bi bi-plus-circle-fill"></i></button>
+                <div class="flex-grow-1">
+                    <div x-cloak x-transition:enter.duration.800ms x-show="showInput" class="input-group">
+                        <input x-model="newKey" @keyup.enter="addField(newKey)" type="text" class="form-control" placeholder="Όνομα νέου πεδίου" >
+                        <button id="addCustomBtn"
+                            x-cloak x-transition:enter.duration.800ms x-show="newKey?.length" 
+                            class="btn btn-outline-info" 
+                            @click="addField(newKey)"
+                            >
+                                <i class="bi bi-check-circle-fill"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
