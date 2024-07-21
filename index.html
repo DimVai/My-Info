@@ -60,9 +60,11 @@
                 <div x-text="key" class="form-label d-block"></div>
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" :placeholder="key" x-model="fields[key]">
-                    <button x-show="fields[key].length" type="button" x-data="{copied:false}" class="btn" :class="copied?'btn-success':'btn-outline-secondary'"
-                        @click="navigator.clipboard.writeText(fields[key]);copied = true;" >
-                        <i class="bi" :class="copied?'bi-clipboard-check':'bi-clipboard'"></i>
+                    <button x-cloak x-transition:enter.duration.1500ms x-transition:leave.duration.800ms 
+                        x-show="fields[key].length" type="button" x-data="{copied:false}" 
+                        class="btn" :class="copied?'btn-success':'btn-outline-secondary'"
+                        @click="navigator.clipboard.writeText(fields[key]);copied=true;" >
+                            <i class="bi" :class="copied?'bi-clipboard-check':'bi-clipboard'"></i>
                     </button>
                 </div>
             </div></template>
