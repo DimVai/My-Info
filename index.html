@@ -42,7 +42,7 @@
 
 
 
-    <main class="py-3 px-2">
+    <main class="py-3 px-1">
 
         <div class="" x-data="{
             fields:$persist({
@@ -97,8 +97,7 @@
                         <button id="addCustomBtn"
                             x-cloak x-transition:enter.duration.800ms x-show="newKey?.length" 
                             class="btn btn-outline-info" 
-                            @click="addField(newKey)"
-                            >
+                            @click="addField(newKey)" >
                                 <i class="bi bi-check-circle-fill"></i>
                         </button>
                     </div>

@@ -56,6 +56,7 @@ h1,h2,h3,h4,h5,h6 {
 .bold{font-weight:bold}
 .italics{font-style:italic}
 .underlined{text-decoration:underline}
+.small{font-size:0.8rem}
 .s12{font-size:1.2rem}
 .s15{font-size:1.5rem}
 .s20{font-size:2rem}
@@ -109,7 +110,7 @@ sub {
   bottom: -0.25em; }
 
 
-/* Embedded content  Images and Links   - Dimitris
+/* Embedded content  Images and Links - Dimitris
   ========================================================================== */
 img, center, .center, figure {
     display: block;
@@ -316,6 +317,7 @@ label {
 
 [x-cloak] { display: none !important; }
 .form-label {
+    font-size: 0.9em;
     margin-bottom: .2rem;
   }
 .bg-main{
