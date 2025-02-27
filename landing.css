@@ -168,7 +168,8 @@ header{
     /* margin: 0 0 var(--defaultMargin) 0; */
     background-color:var(--backColorMain);
     color: white;
-    padding: max(var(--headerPadding), 0.6rem);
+    /* padding: max(var(--headerPadding), 0.6rem); */
+    height: 4.5rem;
 }
 @media (min-width:600px) { /*sticky header on desktop*/
     header:not(.no-sticky){position:sticky;top:0;margin:0;z-index:999;} 
