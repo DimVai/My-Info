@@ -25,6 +25,6 @@ self.addEventListener('activate', event => {
 // on everything (use cache only when offline)
 workbox.routing.registerRoute(
     new RegExp('.*'),   // everything
-    // new workbox.strategies.StaleWhileRevalidate() // cache first, then update cache
-    new workbox.strategies.NetworkFirst() // network first, then cache
+    new workbox.strategies.StaleWhileRevalidate() // cache first, then update cache
+    // new workbox.strategies.NetworkFirst() // network first, then cache
 ); 
