@@ -56,8 +56,10 @@
 
     <main class="py-3 px-1">
 
+        <!-- Χρησιμοποιούμε {...defaultFields} αντί για σκέτο defaultFields, ώστε να είναι 
+         διαφορετικό αντικείμενο από το defaultFields και να μην διαγραφτούν τα πεδία του defaultFields αργότερα! -->
         <div class="" x-data="{
-            fields:$persist(defaultFields), 
+            fields:$persist({...defaultFields}), 
             customFields:$persist({}),     
         }" x-init="
             // Ενημέρωση πεδίων για υπάρχοντες χρήστες (migration) για όταν αλλάζουν τα default πεδία
