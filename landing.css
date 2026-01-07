@@ -331,6 +331,13 @@ label {
 .bg-warning {
     background-color: orange !important;
 }
+
+a.privacy-link{
+    font-weight: normal;
+    color: var(--backColorDark);
+   font-style: italic;
+}
+
 /* .btn-primary{
     background-color: var(--backColorMain);
 }
