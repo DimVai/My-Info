@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,21 +41,34 @@
     </header>
 
 
+    <script>
+        const defaultFields = {
+            'Ταυτότητα':'',
+            'Προσωπικός Αριθμός':'',
+            'Α.Φ.Μ.':'',
+            'Α.Μ.Κ.Α.':'',
+            'Τηλέφωνο':'',
+            'Διεύθυνση':'',
+            'Αυτοκίνητο':'',
+            'IBAN':'',
+        };
+    </script>
 
     <main class="py-3 px-1">
 
         <div class="" x-data="{
-            fields:$persist({
-                'Ταυτότητα':'',
-                'Α.Φ.Μ.':'',
-                'Α.Μ.Κ.Α.':'',
-                'Τηλέφωνο':'',
-                'Διεύθυνση':'',
-                'Αυτοκίνητο':'',
-                'IBAN':'',
-            }), 
+            fields:$persist(defaultFields), 
             customFields:$persist({}),     
-        }">
+        }" x-init="
+            // Ενημέρωση πεδίων για υπάρχοντες χρήστες (migration) για όταν αλλάζουν τα default πεδία
+            $nextTick(() => {
+                let oldValues = {...fields};
+                Object.keys(fields).forEach(k => delete fields[k]);
+                for (let key in defaultFields) {
+                    fields[key] = oldValues[key] !== undefined ? oldValues[key] : defaultFields[key];
+                }
+            });
+        ">
 
             <template x-for="(value, key) in fields" :key="key"><div>
                 <div x-text="key" class="d-block form-label"></div>
