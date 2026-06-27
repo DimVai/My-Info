@@ -11,10 +11,13 @@ self.importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.2.0/wo
 workbox.setConfig({ debug: false });   
 
 // skipWaiting: activate the new version of service worker now, instead of waiting for the next session to do so
-self.addEventListener('install', event => { self.skipWaiting() });
+self.addEventListener('install', event => {
+    event.waitUntil(self.skipWaiting());
+});
 
-// notify when the new updated service worker (this file) gets activated
+// apply the new service worker to all clients (tabs) immediately
 self.addEventListener('activate', event => { 
+    event.waitUntil(self.clients.claim());      
     console.debug('service worker activated', event);
 });
 
@@ -22,9 +25,20 @@ self.addEventListener('activate', event => {
 
 //********************            CACHING STRATEGY            //********************
 
-// on everything (use cache only when offline)
+/** Cache only 2xx responses plugin (do not cache, for example, 303 redirection to login page) */
+const cacheOnly2xxPlugin = {
+    cacheWillUpdate: async ({ response }) => {
+        if (response && (response.type === 'opaque' || (response.status >= 200 && response.status < 300))) {
+            return response;
+        }
+        return null;
+    }
+};
+
+// on everything (serve cached content fast, then refresh it in the background)
 workbox.routing.registerRoute(
     new RegExp('.*'),   // everything
-    new workbox.strategies.StaleWhileRevalidate() // cache first, then update cache
-    // new workbox.strategies.NetworkFirst() // network first, then cache
+    new workbox.strategies.StaleWhileRevalidate({
+        plugins: [cacheOnly2xxPlugin]
+    })
 ); 
