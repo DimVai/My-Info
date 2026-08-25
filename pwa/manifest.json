@@ -12,7 +12,7 @@
     "lang": "el-GR",
     "icons": [
         {
-            "src": "/pwa/info.png",
+            "src": "/pwa/logo.png",
             "type": "image/png",
             "sizes": "512x512"
         }
@@ -22,5 +22,12 @@
             "src": "/pwa/infoSplash.png",
             "sizes": "750x1334"
           }
-      ]
+      ],
+    "related_applications": [
+        {
+            "platform": "play",
+            "id": "app.railway.up.my_info.twa"
+        }
+    ],
+    "prefer_related_applications": true
 }
