@@ -14,14 +14,7 @@
         {
             "src": "/pwa/logo.png",
             "type": "image/png",
-            "sizes": "512x512",
-            "purpose": "maskable"
-        },
-        {
-            "src": "/pwa/logo.png",
-            "type": "image/png",
-            "sizes": "512x512",
-            "purpose": "any"
+            "sizes": "512x512"
         }
     ],
     "splash_pages": [
